@@ -1,0 +1,5 @@
+[client]
+database = "little_lemon"
+user = "root"
+password = "Microsoft145"
+default-character-set = utf8

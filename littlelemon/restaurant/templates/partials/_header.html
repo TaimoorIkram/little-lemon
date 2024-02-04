@@ -1,0 +1,31 @@
+{% load static %}
+<header>
+  <img src="{% static 'img/logo.png' %}" />
+  <div style="display: flex; justify-content: space-between;">
+    {% if user.is_authenticated %}
+    <div>Currently signed in as {{ user.username }}</div>
+    <form action="{% url 'logout-user' %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Logout" style="background: none; border: 1px solid black; padding: 0 1rem; margin: 0; width: auto;">
+    </form>
+    {% else %}
+    <form action="{% url 'login-user' %}" method="GET">
+      {% csrf_token %}
+      <input type="submit" value="Login" style="background: none; border: 1px solid black; padding: 0 1rem; margin: 0; width: auto;">
+    </form>
+    <form action="{% url 'signup-user' %}" method="GET">
+      {% csrf_token %}
+      <input type="submit" value="Sign Up" style="background: none; border: 1px solid black; padding: 0 1rem; margin: 0; width: auto;">
+    </form>
+    {% endif %}
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'menu' %}">Menu</a></li>
+    <li><a href="{% url 'book' %}">Book</a></li>
+    <li><a href="{% url 'reservations' %}">Reservations</a></li>
+  </ul>
+</nav>
